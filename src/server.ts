@@ -5,11 +5,15 @@ import path from 'path'
 
 dotenv.config()
 
-const server= express()
+const server = express()
 
 server.set('view engine', 'mustache')
 server.set('views', path.join(__dirname, 'viwes'))
 server.engine('mustache', mustache())
 server.use(express.static(path.join(__dirname, '../public')))
 
-server.listen(process.env.PORT)
+const PORT = process.env.PORT || 3000
+
+server.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`)
+})
